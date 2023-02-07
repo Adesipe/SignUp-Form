@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGNUP FORM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <form id="form" action="/">
+            <div>
+                <h1>SignUp Form</h1>
+            </div>
+            <div>
+                <div class="input-control">
+                    <label for="username">USERNAME:</label>
+                    <input id="username" type="text" placeholder="john" required>
+                    <div class="error"></div>                
+                </div>
+                <div class="input-control">
+                    <label for="Email">Email:</label>
+                    <input id="email" type="email" placeholder="asd@gmail.com" required>
+                    <div class="error"></div>                
+                </div>
+                <div class="input-control">
+                    <label for="age">AGE:</label>
+                    <input id="age" type="number" required>
+                    <div class="error"></div>                
+                </div>
+                <div class="input-control">
+                    <label for="password">Password:</label>
+                    <input id="password" type="password" placeholder="......." required>
+                    <div class="error"></div>                
+                </div>
+                <div class="input-control">
+                    <label for="confirm password">Confirm Password:</label>
+                    <input id="password2" type="password" required>
+                    <div class="error"></div>                
+                </div>
+                <div>
+                    <button type="submit">sign up</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        const form = document.getElementById('form');
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        const age = document.getElementById('age');
+        const password = document.getElementById('password');
+        const password2 = document.getElementById('password2');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            validateInputs();
+        });
+
+        const setError = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = message;
+            inputControl.classList.add('error');
+            inputControl.classList.remove('success')
+        }
+
+        const setSuccess = element => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = '';
+            inputControl.classList.add('success');
+            inputControl.classList.remove('error');
+        };
+
+        const validateInputs = () => {
+            const usernameValue = username.value.trim();
+            const emailValue = email.value.trim();
+            const ageValue = age.value.trim();
+            const passwordValue = password.value.trim();
+            const password2Value = password2.value.trim();
+
+            if (usernameValue === '') {
+                setError(username, 'Username is required')
+            } else {
+                setSuccess(username);
+            }
+
+            if (emailValue === '') {
+                setError(email, 'Email is required');
+            } else {
+                setSuccess(email);
+            }
+
+            if (ageValue === '') {
+                setError(age, 'Age is required');
+            } else if (ageValue < 18) {
+                setError(age, 'Age must be over 18')
+            } else {
+                setSuccess(age);
+            }
+
+            if (passwordValue === '') {
+                setError(password, 'Password is required');
+            } else if (passwordValue.length < 6) {
+                setError(password, 'Password must be at least 6 characters.')
+            } else {
+                setSuccess(password);
+            }
+
+            if (password2Value === '') {
+                setError(password2, 'Please Confirm your Password');
+            } else if (password2Value !== passwordValue) {
+                setError(password2, "passwords doesn't match");
+            } else {
+                setSuccess(password2);
+            }
+        };
+    </script>
+</body>
+</html>
