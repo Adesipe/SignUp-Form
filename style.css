@@ -8,12 +8,12 @@ body {
 }
 .container {
     background-color: white;
-    height: 580px;
+    height: 500px;
     width: 30%;
     border-radius: 10px;
     margin-left: 35%;
     margin-top: 4%;
-    padding: 20px;
+    padding: 5px;
 }
 h1 {
     font-size: 35px;
@@ -31,7 +31,7 @@ label {
 input {
     width: 80%;
     height: 35px;
-    margin-top: 6px;
+    margin-top: 1px;
     margin-left: 5%;
     border: 2px solid #f33030;
     border-radius: 4px;
